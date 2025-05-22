@@ -1,9 +1,6 @@
 package org.java8StreamQuestions;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
@@ -47,5 +44,24 @@ public class App {
         System.out.println("--------------------");
         System.out.println("           ");
 
+       // 4) How do you find frequency of each element in an array or a list?
+        List<String>stringOfWords=Arrays.asList("kartik","kanishk","kartik","abhay","shubham","preet","abhishek");
+        Map<String,Long>frequentWords=stringOfWords.stream().collect(Collectors.groupingBy(Function.identity(),Collectors.counting()));
+        System.out.println(frequentWords);
+        System.out.println("---------------------");
+        System.out.println("          ");
+
+       // 5) How do you sort the given list of decimals in reverse order?
+        List<Double> decimalList = Arrays.asList(12.45, 23.58, 17.13, 42.89, 33.78, 71.85, 56.98, 21.12);
+        decimalList.stream().sorted(Comparator.reverseOrder()).forEach(System.out::println);
+        System.out.println("----------------------");
+        System.out.println("                ");
+
+       //6) Given a list of strings, join the strings with ‘[‘ as prefix, ‘]’ as suffix and ‘,’ as delimiter?
+        List<String> listOfStrings = Arrays.asList("Facebook", "Twitter", "YouTube", "WhatsApp", "LinkedIn");
+        String newString=listOfStrings.stream().collect(Collectors.joining(",","[","]"));
+        System.out.println(newString);
+        System.out.println("-------------------------");
+        System.out.println("                ");
     }
 }
