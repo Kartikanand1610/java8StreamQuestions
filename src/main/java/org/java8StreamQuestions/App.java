@@ -3,6 +3,7 @@ package org.java8StreamQuestions;
 import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 /**
  * Hello world!
@@ -63,5 +64,32 @@ public class App {
         System.out.println(newString);
         System.out.println("-------------------------");
         System.out.println("                ");
+
+       //7) From the given list of integers, print the numbers which are multiples of 5?
+        List<Integer> listOfIntegers = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
+        List<Integer>listOfMultiple5=listOfInteger.stream().filter(i->i%5==0).collect(Collectors.toList());
+        System.out.println("multiple of 5 are "+listOfMultiple5);
+        System.out.println("--------------------------");
+        System.out.println("               ");
+
+       //8)  Given a list of integers, find maximum and minimum of those numbers?
+        List<Integer> listOfIntegerForMaxAndMin = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
+        int max=listOfIntegerForMaxAndMin.stream().max(Comparator.naturalOrder()).get();
+        int min=listOfIntegerForMaxAndMin.stream().min(Comparator.naturalOrder()).get();
+        System.out.println("The max number is "+max);
+        System.out.println("--------------------------");
+        System.out.println("               ");
+        System.out.println("the min number is "+min);
+        System.out.println("--------------------------");
+        System.out.println("               ");
+
+       //9)How do you merge two unsorted arrays into single sorted array using Java 8 streams?
+        int[] a = new int[] {4, 2, 7, 1};
+
+        int[] b = new int[] {8, 3, 9, 5};
+        int[] c= IntStream.concat(Arrays.stream(a),Arrays.stream(b)).sorted().toArray();
+        System.out.println("Array after concatination is "+Arrays.toString(c));
+        System.out.println("---------------------------");
+        System.out.println("                 ");
     }
 }
