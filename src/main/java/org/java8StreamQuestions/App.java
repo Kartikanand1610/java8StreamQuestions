@@ -4,6 +4,9 @@ import java.util.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+import java.util.stream.Stream;
+
+import static java.util.Arrays.stream;
 
 /**
  * Hello world!
@@ -87,9 +90,76 @@ public class App {
         int[] a = new int[] {4, 2, 7, 1};
 
         int[] b = new int[] {8, 3, 9, 5};
-        int[] c= IntStream.concat(Arrays.stream(a),Arrays.stream(b)).sorted().toArray();
+        int[] c= IntStream.concat(stream(a), stream(b)).sorted().toArray();
         System.out.println("Array after concatination is "+Arrays.toString(c));
         System.out.println("---------------------------");
         System.out.println("                 ");
+
+       //10)How do you merge two unsorted arrays into single sorted array without duplicates?
+
+        int[] d = new int[] {4, 2, 5, 1};
+        int[] e = new int[] {8, 1, 9, 5};
+        int[] f= IntStream.concat(stream(a), stream(b)).distinct().sorted().toArray();
+        System.out.println("Array after concatination is"+Arrays.toString(c));
+        System.out.println("------------------------------");
+        System.out.println("                   ");
+
+       //11)How do you get three maximum numbers and three minimum numbers from the given list of integers?
+
+        List<Integer> listOfNumbers = Arrays.asList(45, 12, 56, 15, 24, 75, 31, 89);
+        System.out.println("The minimum 3 numbers are from the list is");
+        System.out.println("            ");
+        System.out.println("-------------------------------");
+        listOfNumbers.stream().sorted().limit(3).forEach(System.out::println);
+        System.out.println("                   ");
+        System.out.println("The maximum 3 numbers are from the list is");
+        System.out.println("            ");
+        System.out.println("-------------------------------");
+        listOfNumbers.stream().sorted(Comparator.reverseOrder()).limit(3).forEach(System.out::println);
+        System.out.println("                   ");
+
+       //12) Java 8 program to check if two strings are anagrams or not?
+        String s1="RaceCar";
+        String s2="CarRace";
+        s1= Stream.of(s1.split("")).map(String::toUpperCase).sorted().collect(Collectors.joining());
+        s2=Stream.of(s2.split("")).map(String::toUpperCase).sorted().collect(Collectors.joining());
+        if(s1.equals(s2)){
+            System.out.println("The two strings are anagram ");
+        }
+        else{
+            System.out.println("The two strings are not anagram");
+        }
+        System.out.println("                   ");
+
+       //13) Find sum of all digits of a number in Java 8?
+        int i = 15623;
+        int SumOfInteger= Stream.of(String.valueOf(i).split("")).collect(Collectors.summingInt(Integer::parseInt));
+        System.out.println("Sum of integer digits are "+SumOfInteger);
+        System.out.println("-----------------------");
+        System.out.println("                   ");
+
+      //14) Find second largest number in an integer array?
+        List<Integer>listOfNum=Arrays.asList(45,78,94,32,24,56);
+        Integer secondLargestNumber=listOfNum.stream().sorted(Comparator.reverseOrder()).skip(1).findFirst().get();
+        System.out.println("The second largest number is"+secondLargestNumber);
+        System.out.println("-------------------------");
+        System.out.println("                   ");
+
+       //15) Given a list of strings, sort them according to increasing order of their length?
+        List<String> listOfString = Arrays.asList("Java", "Python", "C#", "HTML", "Kotlin", "C++", "COBOL", "C");
+        listOfString.stream().sorted(Comparator.comparing(String::length)).forEach(System.out::println);
+        System.out.println("--------------------------");
+        System.out.println("                    ");
+
+       //16) Given an integer array, find sum and average of all elements?
+        int[] g = new int[] {45, 12, 56, 15, 24, 75, 31, 89};
+        int sum=Arrays.stream(g).sum();
+        System.out.println(sum);
+        System.out.println("--------------------------");
+        System.out.println("       ");
+        Double average=Arrays.stream(g).average().getAsDouble();
+        System.out.println(average);
+        System.out.println("--------------------------");
+        System.out.println("                     ");
     }
 }
